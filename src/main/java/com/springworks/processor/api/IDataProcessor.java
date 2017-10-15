@@ -22,5 +22,7 @@ public interface IDataProcessor {
 	public void start();
 
 	public Stream<BasicEvent> streamOutgoingDataEvents();
+	
+	public boolean isAvailableStream();
 
 }
