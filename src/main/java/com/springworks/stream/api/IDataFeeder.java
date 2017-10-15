@@ -13,11 +13,7 @@ import com.springworks.models.BasicEvent;
  */
 public interface IDataFeeder {
 	
-	public default void start() {
-		new Thread(() -> {
-			feed();
-		}).start();
-	}
+	public void start();
 	
 	public void feed();
 

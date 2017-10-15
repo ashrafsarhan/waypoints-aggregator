@@ -24,10 +24,17 @@ public abstract class QueuedDataFeeder implements IDataFeeder {
 	public Stream<BasicEvent> streamIncomingDataEvent() {
 		return incomingDataEvents.stream();
 	}
-	
+
 	@Override
 	public boolean isAvailable() {
 		return !incomingDataEvents.isEmpty();
+	}
+	
+	@Override
+	public void start() {
+		new Thread(() -> {
+			feed();
+		}).start();
 	}
 
 }
