@@ -19,7 +19,7 @@ import com.springworks.stream.impl.FileDataFeeder;
  */
 public class FileDataFeederTest {
 
-	private IDataFeeder dataFeed;
+	private IDataFeeder wayPointsDataFeeder;
 
 	/**
 	 * @throws java.lang.Exception
@@ -29,24 +29,24 @@ public class FileDataFeederTest {
 		//Get file from resources folder
 		ClassLoader classLoader = getClass().getClassLoader();
 		File file = new File(classLoader.getResource("waypoints.json").getFile());
-		dataFeed = new FileDataFeeder(file);
-		dataFeed.start();
-		while(!dataFeed.isAvailable()) {
+		wayPointsDataFeeder = new FileDataFeeder(file);
+		wayPointsDataFeeder.start();
+		while(!wayPointsDataFeeder.isAvailable()) {
 		}
 	}
 
 	@Test
 	public void testTheFirstDataEvent() throws InterruptedException {
-		dataFeed.streamIncomingDataEvent().forEach(System.out::println);
+		wayPointsDataFeeder.streamIncomingDataEvent().forEach(System.out::println);
 		//Assert on the first data event timestamp (first line in the file)
-		assertEquals("Test Fails (Not the expected first event)", "2016-06-21T12:00:00.000Z", dataFeed.streamIncomingDataEvent().findFirst().get().getTimestamp());	
+		assertEquals("Test Fails (Not the expected first event)", "2016-06-21T12:00:00.000Z", wayPointsDataFeeder.streamIncomingDataEvent().findFirst().get().getTimestamp());	
 	}
 	
 	@Test
 	public void testTheLastDataEvent() throws InterruptedException {
-		dataFeed.streamIncomingDataEvent().forEach(System.out::println);
+		wayPointsDataFeeder.streamIncomingDataEvent().forEach(System.out::println);
 		//Assert on the last data event (end event)
-		assertEquals("Test Fails (Not the expected end event)", true, dataFeed.streamIncomingDataEvent().filter(e -> e.isEnd()).findFirst().isPresent());	
+		assertEquals("Test Fails (Not the expected end event)", true, wayPointsDataFeeder.streamIncomingDataEvent().filter(e -> e.isEnd()).findFirst().isPresent());	
 	}
 
 }
