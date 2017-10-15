@@ -39,6 +39,7 @@ public class FileDataFeeder extends QueuedDataFeeder {
 		        addIncomingDataEvent(wayPoint);
 		    }
 		    addIncomingDataEvent(new BasicEvent(true));
+		    return;
 		}
 		catch (UnsupportedEncodingException e) {
 		    e.printStackTrace();
