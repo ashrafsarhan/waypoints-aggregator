@@ -21,10 +21,7 @@ public class AppInitializer {
 	private static final String CSV_FILE_HEADER = "id,deltaDurationInSec,deltaDistanceInKm,actualSpeed,speedLimit,accumlatedDurationInSec,accumlatedDistanceInKm";
 	private IDataProcessor wayPointsAggregator;
 
-	public AppInitializer(String fileName) {
-		// Get file from resources folder
-		ClassLoader classLoader = getClass().getClassLoader();
-		File file = new File(classLoader.getResource(fileName).getFile());
+	public AppInitializer(File file) {
 		wayPointsAggregator = new WayPointsAggregator(new FileDataFeeder(file));
 		wayPointsAggregator.start();
 		while (!wayPointsAggregator.isAvailableStream()) {
