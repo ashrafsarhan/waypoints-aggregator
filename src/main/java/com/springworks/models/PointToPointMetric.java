@@ -61,6 +61,51 @@ public class PointToPointMetric extends BasicEvent {
 	}
 
 	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		long temp;
+		temp = Double.doubleToLongBits(accumlatedDistanceInKm);
+		result = prime * result + (int) (temp ^ (temp >>> 32));
+		result = prime * result + (int) (accumlatedDurationInSec ^ (accumlatedDurationInSec >>> 32));
+		temp = Double.doubleToLongBits(actualSpeed);
+		result = prime * result + (int) (temp ^ (temp >>> 32));
+		temp = Double.doubleToLongBits(deltaDistanceInKm);
+		result = prime * result + (int) (temp ^ (temp >>> 32));
+		result = prime * result + (int) (deltaDurationInSec ^ (deltaDurationInSec >>> 32));
+		result = prime * result + id;
+		temp = Double.doubleToLongBits(speedLimit);
+		result = prime * result + (int) (temp ^ (temp >>> 32));
+		return result;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		PointToPointMetric other = (PointToPointMetric) obj;
+		if (Double.doubleToLongBits(accumlatedDistanceInKm) != Double.doubleToLongBits(other.accumlatedDistanceInKm))
+			return false;
+		if (accumlatedDurationInSec != other.accumlatedDurationInSec)
+			return false;
+		if (Double.doubleToLongBits(actualSpeed) != Double.doubleToLongBits(other.actualSpeed))
+			return false;
+		if (Double.doubleToLongBits(deltaDistanceInKm) != Double.doubleToLongBits(other.deltaDistanceInKm))
+			return false;
+		if (deltaDurationInSec != other.deltaDurationInSec)
+			return false;
+		if (id != other.id)
+			return false;
+		if (Double.doubleToLongBits(speedLimit) != Double.doubleToLongBits(other.speedLimit))
+			return false;
+		return true;
+	}
+
+	@Override
 	public String toString() {
 		return "PointToPointMetric [id=" + id + ", deltaDurationInSec=" + deltaDurationInSec + ", deltaDistanceInKm="
 				+ deltaDistanceInKm + ", actualSpeed=" + actualSpeed + ", speedLimit=" + speedLimit
