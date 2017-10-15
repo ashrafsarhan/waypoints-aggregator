@@ -34,7 +34,10 @@ public class FileDataFeederTest {
 	}
 
 	@Test
-	public void test() {
+	public void test() throws InterruptedException {
+		while(dataFeed.streamIncomingDataEvent().count() == 0) {
+			System.out.println("waiting for the data stream to be available ......");
+		}
 		dataFeed.streamIncomingDataEvent().forEach(System.out::println);
 		//Assert the stream size (file lines count)
 		assertEquals("Test Fails (Not the expected events counts)", 6, dataFeed.streamIncomingDataEvent().count());

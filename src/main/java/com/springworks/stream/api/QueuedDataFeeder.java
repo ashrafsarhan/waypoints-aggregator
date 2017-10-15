@@ -13,15 +13,16 @@ import com.springworks.models.BasicEvent;
  *
  */
 public abstract class QueuedDataFeeder implements IDataFeeder {
-	
+
 	private ConcurrentLinkedQueue<BasicEvent> incomingDataEvents = new ConcurrentLinkedQueue<BasicEvent>();
 
 	public boolean addIncomingDataEvent(BasicEvent e) {
 		return incomingDataEvents.add(e);
 	}
 
+	@Override
 	public Stream<BasicEvent> streamIncomingDataEvent() {
 		return incomingDataEvents.stream();
 	}
-	
+
 }
