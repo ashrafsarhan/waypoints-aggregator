@@ -3,6 +3,8 @@
  */
 package com.springworks.models;
 
+import java.time.LocalDateTime;
+
 /**
  * @author assar
  *
@@ -11,15 +13,16 @@ public class PointToPointMetric extends BasicEvent {
 
 	private int id;
 	private long deltaDurationInSec;
-	private long deltaDistanceInKm;
+	private double deltaDistanceInKm;
 	private double actualSpeed;
 	private double speedLimit;
 	private long accumlatedDurationInSec;
 	private double accumlatedDistanceInKm;
 
-	public PointToPointMetric(int id, long deltaDurationInSec, long deltaDistanceInKm, double actualSpeed,
+	public PointToPointMetric(int id, long deltaDurationInSec, double deltaDistanceInKm, double actualSpeed,
 			double speedLimit, long accumlatedDurationInSec, double accumlatedDistanceInKm) {
 		super(false);
+		this.timestamp = LocalDateTime.now().toString();
 		this.id = id;
 		this.deltaDurationInSec = deltaDurationInSec;
 		this.deltaDistanceInKm = deltaDistanceInKm;
@@ -37,7 +40,7 @@ public class PointToPointMetric extends BasicEvent {
 		return deltaDurationInSec;
 	}
 
-	public long getDeltaDistanceInKm() {
+	public double getDeltaDistanceInKm() {
 		return deltaDistanceInKm;
 	}
 

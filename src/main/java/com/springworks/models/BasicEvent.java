@@ -3,19 +3,22 @@
  */
 package com.springworks.models;
 
+import java.time.LocalDateTime;
+
 /**
  * @author assar
  *
  */
 public class BasicEvent {
 	
-	private String timestamp;
+	protected String timestamp;
 	
 	private boolean isEnd;
 	
 	public BasicEvent(boolean isEnd) {
 		super();
 		this.isEnd = isEnd;
+		this.timestamp = LocalDateTime.now().toString();
 	}
 
 	public String getTimestamp() {
