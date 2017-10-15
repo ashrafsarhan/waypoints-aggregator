@@ -26,7 +26,13 @@ public abstract class QueuedDataProcessor implements IDataProcessor {
 	@Override
 	public void start() {
 		dataFeeder.streamIncomingDataEvent().forEach(e -> {
-            process(e).ifPresent(this::addOutgoingDataEvent);
+			if (!e.isEnd()) {
+				process(e).ifPresent(this::addOutgoingDataEvent);
+			} else {
+				System.out.println("Add end event to the OutgoingDataEvents Queue ...");
+				addOutgoingDataEvent(new BasicEvent(true));
+				return;
+			}
 		});
 	}
 

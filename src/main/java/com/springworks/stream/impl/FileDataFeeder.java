@@ -13,6 +13,7 @@ import java.io.UnsupportedEncodingException;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.stream.JsonReader;
+import com.springworks.models.BasicEvent;
 import com.springworks.models.WayPoint;
 import com.springworks.stream.api.QueuedDataFeeder;
 
@@ -37,6 +38,8 @@ public class FileDataFeeder extends QueuedDataFeeder {
 		        WayPoint wayPoint = gson.fromJson(jsonReader, WayPoint.class);
 		        addIncomingDataEvent(wayPoint);
 		    }
+		    System.out.println("Add end event to the IncomingDataEvent Queue ...");
+		    addIncomingDataEvent(new BasicEvent(true));
 		}
 		catch (UnsupportedEncodingException e) {
 		    e.printStackTrace();

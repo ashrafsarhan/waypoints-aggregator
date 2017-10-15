@@ -13,6 +13,10 @@ public class WayPoint extends BasicEvent {
 	private double speed;
 	private double speedLimit;
 	
+	public WayPoint() {
+		super(false);
+	}
+	
 	public Position getPosition() {
 		return position;
 	}
