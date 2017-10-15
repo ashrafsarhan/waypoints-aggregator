@@ -7,6 +7,7 @@ import java.util.Optional;
 import java.util.concurrent.atomic.AtomicInteger;
 
 import com.springworks.common.GeoDistanceCalculator;
+import com.springworks.common.NumberUtils;
 import com.springworks.common.TimeCalculator;
 import com.springworks.models.BasicEvent;
 import com.springworks.models.PointToPointMetric;
@@ -57,7 +58,7 @@ public class WayPointsAggregator extends QueuedDataProcessor {
 		long accumlatedDurationInSec = priorAccumlatedDurationInSe + deltaDurationInSec;
 		double priorAccumlatedDistanceInKm = (priorPointToPointMetric != null)
 				? priorPointToPointMetric.getAccumlatedDistanceInKm() : 0.0d;
-		double accumlatedDistanceInKm = priorAccumlatedDistanceInKm + deltaDistanceInKm;
+		double accumlatedDistanceInKm = NumberUtils.roundDoubleToTwoDecimalPoints(priorAccumlatedDistanceInKm + deltaDistanceInKm);
 
 		PointToPointMetric newPointToPointMetric = new PointToPointMetric(pointToPointMetricCounter.incrementAndGet(),
 				deltaDurationInSec, deltaDistanceInKm, actualSpeed, speedLimit, accumlatedDurationInSec,

@@ -3,8 +3,6 @@
  */
 package com.springworks.common;
 
-import java.text.DecimalFormat;
-
 import com.springworks.models.Position;
 
 /**
@@ -14,7 +12,6 @@ import com.springworks.models.Position;
 public class GeoDistanceCalculator {
 	
 	private static final int EARTH_RADIUS = 6371; // Radius of the earth in km
-	private static final DecimalFormat DECIMAL_FORMAT = new DecimalFormat("###.##");
 
 	//https://stackoverflow.com/questions/27928/calculate-distance-between-two-latitude-longitude-points-haversine-formula
 	//http://www.igismap.com/haversine-formula-calculate-geographic-distance-earth
@@ -31,7 +28,7 @@ public class GeoDistanceCalculator {
 			    Math.sin(dLon/2) * Math.sin(dLon/2); 
 		double c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1-a)); 
 		double d = EARTH_RADIUS * c; // Distance in km
-		return Double.valueOf(DECIMAL_FORMAT.format(d));
+		return NumberUtils.roundDoubleToTwoDecimalPoints(d);
 	}
 	
 	public static double deg2rad(double deg) {
