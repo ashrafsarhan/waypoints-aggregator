@@ -17,7 +17,7 @@ public abstract class QueuedDataProcessor implements IDataProcessor {
 
 	private ConcurrentLinkedQueue<BasicEvent> outgoingDataEvents = new ConcurrentLinkedQueue<BasicEvent>();
 	private IDataFeeder dataFeeder;
-	
+
 	@Override
 	public void setDataFeeder(IDataFeeder dataFeeder) {
 		this.dataFeeder = dataFeeder;
@@ -25,15 +25,19 @@ public abstract class QueuedDataProcessor implements IDataProcessor {
 
 	@Override
 	public void start() {
-		dataFeeder.streamIncomingDataEvent().forEach(e -> {
-			if (!e.isEnd()) {
-				process(e).ifPresent(this::addOutgoingDataEvent);
-			} else {
-				System.out.println("Add end event to the OutgoingDataEvents Queue ...");
-				addOutgoingDataEvent(new BasicEvent(true));
-				return;
+		new Thread(() -> {
+			while(!dataFeeder.isAvailable()) {
 			}
-		});
+			dataFeeder.streamIncomingDataEvent().forEach(e -> {
+				if (!e.isEnd()) {
+					process(e).ifPresent(this::addOutgoingDataEvent);
+				} else {
+					System.out.println("Add end event to the OutgoingDataEvents Queue ...");
+					addOutgoingDataEvent(new BasicEvent(true));
+					return;
+				}
+			});
+		}).start();
 	}
 
 	public boolean addOutgoingDataEvent(BasicEvent e) {
