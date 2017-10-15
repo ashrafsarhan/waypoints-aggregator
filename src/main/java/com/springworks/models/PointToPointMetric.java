@@ -15,10 +15,10 @@ public class PointToPointMetric extends BasicEvent {
 	private double actualSpeed;
 	private double speedLimit;
 	private long accumlatedDurationInSec;
-	private long accumlatedDistanceInKm;
+	private double accumlatedDistanceInKm;
 
 	public PointToPointMetric(int id, long deltaDurationInSec, long deltaDistanceInKm, double actualSpeed,
-			double speedLimit, long accumlatedDurationInSec, long accumlatedDistanceInKm) {
+			double speedLimit, long accumlatedDurationInSec, double accumlatedDistanceInKm) {
 		super(false);
 		this.id = id;
 		this.deltaDurationInSec = deltaDurationInSec;
@@ -53,7 +53,7 @@ public class PointToPointMetric extends BasicEvent {
 		return accumlatedDurationInSec;
 	}
 
-	public long getAccumlatedDistanceInKm() {
+	public double getAccumlatedDistanceInKm() {
 		return accumlatedDistanceInKm;
 	}
 
