@@ -60,4 +60,12 @@ public class PointToPointMetric extends BasicEvent {
 		return accumlatedDistanceInKm;
 	}
 
+	@Override
+	public String toString() {
+		return "PointToPointMetric [id=" + id + ", deltaDurationInSec=" + deltaDurationInSec + ", deltaDistanceInKm="
+				+ deltaDistanceInKm + ", actualSpeed=" + actualSpeed + ", speedLimit=" + speedLimit
+				+ ", accumlatedDurationInSec=" + accumlatedDurationInSec + ", accumlatedDistanceInKm="
+				+ accumlatedDistanceInKm + "]";
+	}
+	
 }
