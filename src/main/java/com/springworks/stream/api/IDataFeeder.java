@@ -19,6 +19,6 @@ public interface IDataFeeder {
 
 	public Stream<BasicEvent> streamIncomingDataEvent();
 	
-	public boolean isAvailable();
+	public boolean isAvailableStream();
 
 }

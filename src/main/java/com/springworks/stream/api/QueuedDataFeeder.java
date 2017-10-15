@@ -26,7 +26,7 @@ public abstract class QueuedDataFeeder implements IDataFeeder {
 	}
 
 	@Override
-	public boolean isAvailable() {
+	public boolean isAvailableStream() {
 		return !incomingDataEvents.isEmpty();
 	}
 	
