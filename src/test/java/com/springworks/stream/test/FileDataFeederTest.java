@@ -30,7 +30,7 @@ public class FileDataFeederTest {
 		ClassLoader classLoader = getClass().getClassLoader();
 		File file = new File(classLoader.getResource("waypoints.json").getFile());
 		dataFeed = new FileDataFeeder(file);
-		dataFeed.setup();
+		dataFeed.start();
 	}
 
 	@Test

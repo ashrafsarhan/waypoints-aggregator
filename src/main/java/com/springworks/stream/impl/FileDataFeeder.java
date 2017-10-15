@@ -30,7 +30,7 @@ public class FileDataFeeder extends QueuedDataFeeder {
 		this.file = file;
 	}
 
-	public void setup() {
+	public void start() {
 		try(JsonReader jsonReader = new JsonReader(new InputStreamReader(new FileInputStream(file), "UTF-8"))) {
 		    Gson gson = new GsonBuilder().create();		 
 		    jsonReader.beginArray();

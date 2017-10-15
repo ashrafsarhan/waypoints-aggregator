@@ -13,7 +13,7 @@ import com.springworks.models.BasicEvent;
  */
 public interface IDataFeeder {
 	
-	public void setup();
+	public void start();
 
 	public Stream<BasicEvent> streamIncomingDataEvent();
 
