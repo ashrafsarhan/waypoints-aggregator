@@ -11,7 +11,7 @@ public class WayPoint extends BasicEvent {
 
 	private Position position;
 	private double speed;
-	private double speedLimit;
+	private double speed_limit;
 	
 	public WayPoint() {
 		super(false);
@@ -24,11 +24,11 @@ public class WayPoint extends BasicEvent {
 		return speed;
 	}
 	public double getSpeedLimit() {
-		return speedLimit;
+		return speed_limit;
 	}
 	
 	@Override
 	public String toString() {
-		return "WayPoint [timestamp=" + getTimestamp() +", position=" + position + ", speed=" + speed + ", speedLimit=" + speedLimit + "]";
+		return "WayPoint [timestamp=" + getTimestamp() +", position=" + position + ", speed=" + speed + ", speedLimit=" + speed_limit + "]";
 	}
 }
