@@ -31,18 +31,20 @@ public class FileDataFeederTest {
 		File file = new File(classLoader.getResource("waypoints.json").getFile());
 		dataFeed = new FileDataFeeder(file);
 		dataFeed.start();
+		while(!dataFeed.isAvailable()) {
+		}
 	}
 
 	@Test
-	public void test() throws InterruptedException {
-		while(!dataFeed.isAvailable()) {
-			System.out.println("waiting for the data stream to be available ......");
-		}
-		dataFeed.streamIncomingDataEvent().forEach(System.out::println);
-		//Assert the stream size (file lines count)
-		assertEquals("Test Fails (Not the expected events counts)", 6, dataFeed.streamIncomingDataEvent().count());
+	public void testTheFirstDataEvent() throws InterruptedException {
 		//Assert on the first data event timestamp (first line in the file)
 		assertEquals("Test Fails (Not the expected first event)", "2016-06-21T12:00:00.000Z", dataFeed.streamIncomingDataEvent().findFirst().get().getTimestamp());	
+	}
+	
+	@Test
+	public void testTheLastDataEvent() throws InterruptedException {
+		//Assert on the last data event (end event)
+		assertEquals("Test Fails (Not the expected end event)", true, dataFeed.streamIncomingDataEvent().filter(e -> e.isEnd()).findFirst().isPresent());	
 	}
 
 }
