@@ -10,35 +10,35 @@ package com.springworks.models;
 public class PointToPointMetric extends BasicEvent {
 
 	private int id;
-	private long deltaDuration;
-	private long deltaDistance;
+	private long deltaDurationInSec;
+	private long deltaDistanceInKm;
 	private double actualSpeed;
 	private double speedLimit;
-	private long accumlatedDuration;
-	private long accumlatedDistance;
+	private long accumlatedDurationInSec;
+	private long accumlatedDistanceInKm;
 
-	public PointToPointMetric(int id, long deltaDuration, long deltaDistance, double actualSpeed, double speedLimit,
-			long accumlatedDuration, long accumlatedDistance) {
+	public PointToPointMetric(int id, long deltaDurationInSec, long deltaDistanceInKm, double actualSpeed,
+			double speedLimit, long accumlatedDurationInSec, long accumlatedDistanceInKm) {
 		super(false);
 		this.id = id;
-		this.deltaDuration = deltaDuration;
-		this.deltaDistance = deltaDistance;
+		this.deltaDurationInSec = deltaDurationInSec;
+		this.deltaDistanceInKm = deltaDistanceInKm;
 		this.actualSpeed = actualSpeed;
 		this.speedLimit = speedLimit;
-		this.accumlatedDuration = accumlatedDuration;
-		this.accumlatedDistance = accumlatedDistance;
+		this.accumlatedDurationInSec = accumlatedDurationInSec;
+		this.accumlatedDistanceInKm = accumlatedDistanceInKm;
 	}
 
 	public int getId() {
 		return id;
 	}
 
-	public long getDeltaDuration() {
-		return deltaDuration;
+	public long getDeltaDurationInSec() {
+		return deltaDurationInSec;
 	}
 
-	public long getDeltaDistance() {
-		return deltaDistance;
+	public long getDeltaDistanceInKm() {
+		return deltaDistanceInKm;
 	}
 
 	public double getActualSpeed() {
@@ -49,12 +49,12 @@ public class PointToPointMetric extends BasicEvent {
 		return speedLimit;
 	}
 
-	public long getAccumlatedDuration() {
-		return accumlatedDuration;
+	public long getAccumlatedDurationInSec() {
+		return accumlatedDurationInSec;
 	}
 
-	public long getAccumlatedDistance() {
-		return accumlatedDistance;
+	public long getAccumlatedDistanceInKm() {
+		return accumlatedDistanceInKm;
 	}
 
 }
