@@ -14,9 +14,7 @@ import com.springworks.models.BasicEvent;
 public interface IDataFeeder {
 	
 	public void setup();
-	
-	public boolean addDataEvent(BasicEvent e);
 
-	public Stream<BasicEvent> streamDataEvent();
+	public Stream<BasicEvent> streamIncomingDataEvent();
 
 }

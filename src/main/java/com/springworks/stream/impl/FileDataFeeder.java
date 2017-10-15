@@ -29,14 +29,13 @@ public class FileDataFeeder extends QueuedDataFeeder {
 		this.file = file;
 	}
 
-
 	public void setup() {
 		try(JsonReader jsonReader = new JsonReader(new InputStreamReader(new FileInputStream(file), "UTF-8"))) {
 		    Gson gson = new GsonBuilder().create();		 
 		    jsonReader.beginArray();
 		    while (jsonReader.hasNext()){
 		        WayPoint wayPoint = gson.fromJson(jsonReader, WayPoint.class);
-		        addDataEvent(wayPoint);
+		        addIncomingDataEvent(wayPoint);
 		    }
 		}
 		catch (UnsupportedEncodingException e) {
