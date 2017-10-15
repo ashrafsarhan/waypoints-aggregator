@@ -37,12 +37,14 @@ public class FileDataFeederTest {
 
 	@Test
 	public void testTheFirstDataEvent() throws InterruptedException {
+		dataFeed.streamIncomingDataEvent().forEach(System.out::println);
 		//Assert on the first data event timestamp (first line in the file)
 		assertEquals("Test Fails (Not the expected first event)", "2016-06-21T12:00:00.000Z", dataFeed.streamIncomingDataEvent().findFirst().get().getTimestamp());	
 	}
 	
 	@Test
 	public void testTheLastDataEvent() throws InterruptedException {
+		dataFeed.streamIncomingDataEvent().forEach(System.out::println);
 		//Assert on the last data event (end event)
 		assertEquals("Test Fails (Not the expected end event)", true, dataFeed.streamIncomingDataEvent().filter(e -> e.isEnd()).findFirst().isPresent());	
 	}
