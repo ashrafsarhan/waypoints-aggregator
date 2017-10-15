@@ -35,7 +35,7 @@ public class FileDataFeederTest {
 
 	@Test
 	public void test() throws InterruptedException {
-		while(dataFeed.streamIncomingDataEvent().count() == 0) {
+		while(!dataFeed.isAvailable()) {
 			System.out.println("waiting for the data stream to be available ......");
 		}
 		dataFeed.streamIncomingDataEvent().forEach(System.out::println);

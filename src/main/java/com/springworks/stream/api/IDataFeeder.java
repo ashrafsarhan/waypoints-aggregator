@@ -22,5 +22,7 @@ public interface IDataFeeder {
 	public void feed();
 
 	public Stream<BasicEvent> streamIncomingDataEvent();
+	
+	public boolean isAvailable();
 
 }
