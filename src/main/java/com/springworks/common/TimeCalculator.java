@@ -11,22 +11,23 @@ import java.text.SimpleDateFormat;
  *
  */
 public class TimeCalculator {
-	
+
 	private static final String DATE_FORMAT_PATTERN = "yyyy-MM-dd'T'HH:mm:ss.SSS'Z'";
 	private static final SimpleDateFormat SIMPLE_DATE_FORMAT = new SimpleDateFormat(DATE_FORMAT_PATTERN);
-	
+
 	public static long getDeltaEpochMillis(String priorTimestamp, String currentTimestamp) {
-		long deltaEpochMillis = getEpochMillis(currentTimestamp) - getEpochMillis(priorTimestamp);
+		long deltaEpochMillis = 0;
+		try {
+			deltaEpochMillis = getEpochMillis(currentTimestamp) - getEpochMillis(priorTimestamp);
+		} catch (ParseException e) {
+			System.out.println("Invalid given DateTime format");
+			return 0;
+		}
 		return deltaEpochMillis;
 	}
-	
-	public static long getEpochMillis(String timestamp) {
-		long epochMillis = 0;
-		try {
-			epochMillis = SIMPLE_DATE_FORMAT.parse(timestamp).getTime();
-		} catch (ParseException e) {
-			e.printStackTrace();
-		}
-		return epochMillis;
+
+	public static long getEpochMillis(String timestamp) throws ParseException {
+		return SIMPLE_DATE_FORMAT.parse(timestamp).getTime();
 	}
+
 }
