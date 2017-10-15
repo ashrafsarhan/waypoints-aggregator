@@ -28,13 +28,11 @@ public abstract class QueuedDataProcessor implements IDataProcessor {
 		new Thread(() -> {
 			dataFeeder.start();
 			while(!dataFeeder.isAvailableStream()) {
-				System.out.println("dataFeeder data stream is not available yet ...");
 			}
 			dataFeeder.streamIncomingDataEvent().forEach(e -> {
 				if (!e.isEnd()) {
 					process(e).ifPresent(this::addOutgoingDataEvent);
 				} else {
-					System.out.println("Add end event to the OutgoingDataEvents Queue ...");
 					addOutgoingDataEvent(new BasicEvent(true));
 					return;
 				}
