@@ -1,6 +1,7 @@
-/**
- * 
- */
+/**********************************************************************
+ *  Copyright (c) 2017, Springworks, All right reserved.
+ *  
+ **********************************************************************/
 package com.springworks.processor.api;
 
 import java.util.concurrent.ConcurrentLinkedQueue;
@@ -10,8 +11,9 @@ import com.springworks.models.BasicEvent;
 import com.springworks.stream.api.IDataFeeder;
 
 /**
- * @author assar
+ * The Class QueuedDataProcessor.
  *
+ * @author Ashraf Sarhan <ashraf.sar7an@gmail.com>
  */
 public abstract class QueuedDataProcessor implements IDataProcessor {
 
@@ -38,10 +40,21 @@ public abstract class QueuedDataProcessor implements IDataProcessor {
 		}).start();
 	}
 	
+	/**
+	 * Checks if is available stream.
+	 *
+	 * @return true, if is available stream
+	 */
 	private boolean isAvailableStream() {
 		return !outgoingDataEvents.isEmpty();
 	}
 
+	/**
+	 * Adds the outgoing data event.
+	 *
+	 * @param e the e
+	 * @return true, if successful
+	 */
 	public boolean addOutgoingDataEvent(BasicEvent e) {
 		return outgoingDataEvents.add(e);
 	}

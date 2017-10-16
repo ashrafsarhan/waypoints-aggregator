@@ -1,6 +1,7 @@
-/**
- * 
- */
+/**********************************************************************
+ *  Copyright (c) 2017, Springworks, All right reserved.
+ *  
+ **********************************************************************/
 package com.springworks.common;
 
 import java.io.FileWriter;
@@ -10,13 +11,22 @@ import java.util.stream.Stream;
 import com.springworks.models.BasicEvent;
 
 /**
- * @author assar
- *
+ * The Class CsvFileWriter.
+ * 
+ * @author Ashraf Sarhan <ashraf.sarhan@gmail.com>
  */
 public class CsvFileWriter {
 
 	private static final String NEW_LINE_SEPARATOR = "\n";
 
+	/**
+	 * Write csv file.
+	 *
+	 * @param fileName the file name
+	 * @param csvHeader the csv header
+	 * @param events the events
+	 * @throws IOException Signals that an I/O exception has occurred.
+	 */
 	public static void writeCsvFile(String fileName, String csvHeader, Stream<BasicEvent> events) throws IOException {
 		final FileWriter fileWriter = new FileWriter(fileName);
 		try {

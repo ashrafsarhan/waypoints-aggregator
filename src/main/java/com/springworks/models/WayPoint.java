@@ -1,11 +1,13 @@
-/**
- * 
- */
+/**********************************************************************
+ *  Copyright (c) 2017, Springworks, All right reserved.
+ *  
+ **********************************************************************/
 package com.springworks.models;
 
 /**
- * @author assar
+ * The Class WayPoint.
  *
+ * @author Ashraf Sarhan <ashraf.sar7an@gmail.com>
  */
 public class WayPoint extends BasicEvent {
 

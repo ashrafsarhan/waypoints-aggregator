@@ -1,6 +1,7 @@
-/**
- * 
- */
+/**********************************************************************
+ *  Copyright (c) 2017, Springworks, All right reserved.
+ *  
+ **********************************************************************/
 package com.springworks.processor.impl;
 
 import java.util.Optional;
@@ -16,8 +17,9 @@ import com.springworks.processor.api.QueuedDataProcessor;
 import com.springworks.stream.api.IDataFeeder;
 
 /**
- * @author assar
+ * The Class WayPointsAggregator.
  *
+ * @author Ashraf Sarhan <ashraf.sar7an@gmail.com>
  */
 public class WayPointsAggregator extends QueuedDataProcessor {
 
@@ -25,6 +27,11 @@ public class WayPointsAggregator extends QueuedDataProcessor {
 	private WayPoint priorWayPoint = null;
 	private PointToPointMetric priorPointToPointMetric = null;
 
+	/**
+	 * Instantiates a new way points aggregator.
+	 *
+	 * @param dataFeeder the data feeder
+	 */
 	public WayPointsAggregator(IDataFeeder dataFeeder) {
 		super();
 		setDataFeeder(dataFeeder);
@@ -46,6 +53,12 @@ public class WayPointsAggregator extends QueuedDataProcessor {
 
 	}
 
+	/**
+	 * Gets the point to point metric.
+	 *
+	 * @param currentWayPoint the current way point
+	 * @return the point to point metric
+	 */
 	private PointToPointMetric getPointToPointMetric(WayPoint currentWayPoint) {
 		long deltaDurationInSec = TimeCalculator.getDeltaEpochMillis(priorWayPoint.getTimestamp(),
 				currentWayPoint.getTimestamp());

@@ -1,6 +1,7 @@
-/**
- * 
- */
+/**********************************************************************
+ *  Copyright (c) 2017, Springworks, All right reserved.
+ *  
+ **********************************************************************/
 package com.springworks.stream.impl;
 
 import java.io.File;
@@ -18,18 +19,25 @@ import com.springworks.models.WayPoint;
 import com.springworks.stream.api.QueuedDataFeeder;
 
 /**
- * @author assar
+ * The Class FileDataFeeder.
  *
+ * @author Ashraf Sarhan <ashraf.sar7an@gmail.com>
  */
 public class FileDataFeeder extends QueuedDataFeeder {
 	
 	private File file;
 
+	/**
+	 * Instantiates a new file data feeder.
+	 *
+	 * @param file the file
+	 */
 	public FileDataFeeder(File file) {
 		super();
 		this.file = file;
 	}
 
+	@Override
 	public void feed() {
 		try(JsonReader jsonReader = new JsonReader(new InputStreamReader(new FileInputStream(file), "UTF-8"))) {
 		    Gson gson = new GsonBuilder().create();		 

@@ -1,13 +1,15 @@
-/**
- * 
- */
+/**********************************************************************
+ *  Copyright (c) 2017, Springworks, All right reserved.
+ *  
+ **********************************************************************/
 package com.springworks.models;
 
 import java.time.LocalDateTime;
 
 /**
- * @author assar
+ * The Class BasicEvent.
  *
+ * @author Ashraf Sarhan <ashraf.sar7an@gmail.com>
  */
 public class BasicEvent {
 	

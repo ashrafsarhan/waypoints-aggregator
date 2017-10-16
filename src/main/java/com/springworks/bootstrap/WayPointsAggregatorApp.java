@@ -1,18 +1,22 @@
-/**
- * 
- */
+/**********************************************************************
+ *  Copyright (c) 2017, Springworks, All right reserved.
+ *  
+ **********************************************************************/
 package com.springworks.bootstrap;
 
 import java.io.File;
 
 /**
- * @author assar
+ * The Class WayPointsAggregatorApp.
  *
+ * @author Ashraf Sarhan <ashraf.sarhan@gmail.com>
  */
 public class WayPointsAggregatorApp {
 
 	/**
-	 * @param args
+	 * The main method.
+	 *
+	 * @param args the arguments
 	 */
 	public static void main(String[] args) {
 		String inputfilePath = args[0];
