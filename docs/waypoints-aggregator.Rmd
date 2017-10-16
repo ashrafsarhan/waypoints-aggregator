@@ -31,12 +31,12 @@ To clone the source code, visit <https://github.com/ashrafsarhan/waypoints-aggre
     + Contains the (IDataFeeder) interface with a template abstract class (QueuedDataFeeder) with one concrete implementation (FileDataFeeder) which stream the waypoints file data to the (WayPointsAggregator) processor.
 * com.springworks.processor.api/impl
     + Contains the (IDataProcessor) interface with a template abstract class (QueuedDataProcessor) with one concrete implementation (WayPointsAggregator) which provides the actual processing.
+    
+##3. Project Architecture (Figure 1)
 
-##4. Project Architecture
+![Waypoints Aggregator Architecture](waypoints-aggregator.png)
 
-![Waypoints Aggregator Architecture](\class_diagrams\waypoints-aggregator.png)
-
-##5. Project Testing/Running
+##4. Project Testing/Running
 There are some Junit cases to test the functionalities, which are running during the project build phase. After building all the projects, go to the target dir and you will find an excutable deployable fat jars (app-name.jar) which contains all the dependencies.
 
 To build the project, run the following mvn command:
@@ -47,7 +47,7 @@ mnv clean install
 java -jar waypoints-aggregator-0.0.1.jar waypoints.json
 ```
 
-##7. References
+##5. References
 [1] Calculating the distance between each waypints using the haversine formula
 <https://stackoverflow.com/questions/27928/calculate-distance-between-two-latitude-longitude-points-haversine-formula>
 <http://www.igismap.com/haversine-formula-calculate-geographic-distance-earth>
