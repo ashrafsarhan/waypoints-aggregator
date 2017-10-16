@@ -27,8 +27,6 @@ public abstract class QueuedDataProcessor implements IDataProcessor {
 	public void start() {
 		new Thread(() -> {
 			dataFeeder.start();
-			while(!dataFeeder.isAvailableStream()) {
-			}
 			dataFeeder.streamIncomingDataEvent().forEach(e -> {
 				if (!e.isEnd()) {
 					process(e).ifPresent(this::addOutgoingDataEvent);
@@ -40,8 +38,7 @@ public abstract class QueuedDataProcessor implements IDataProcessor {
 		}).start();
 	}
 	
-	@Override
-	public boolean isAvailableStream() {
+	private boolean isAvailableStream() {
 		return !outgoingDataEvents.isEmpty();
 	}
 
@@ -51,6 +48,8 @@ public abstract class QueuedDataProcessor implements IDataProcessor {
 
 	@Override
 	public Stream<BasicEvent> streamOutgoingDataEvents() {
+		while(!isAvailableStream()) {
+		}
 		return outgoingDataEvents.stream();
 	}
 

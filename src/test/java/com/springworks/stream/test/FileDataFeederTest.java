@@ -31,8 +31,6 @@ public class FileDataFeederTest {
 		File file = new File(classLoader.getResource("waypoints.json").getFile());
 		wayPointsDataFeeder = new FileDataFeeder(file);
 		wayPointsDataFeeder.start();
-		while(!wayPointsDataFeeder.isAvailableStream()) {
-		}
 	}
 
 	@Test

@@ -24,8 +24,6 @@ public class AppInitializer {
 	public AppInitializer(File file) {
 		wayPointsAggregator = new WayPointsAggregator(new FileDataFeeder(file));
 		wayPointsAggregator.start();
-		while (!wayPointsAggregator.isAvailableStream()) {
-		}
 		saveWayPointsMetricsDataToCsvFile();
 	}
 

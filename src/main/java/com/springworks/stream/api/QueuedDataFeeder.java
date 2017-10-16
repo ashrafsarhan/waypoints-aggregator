@@ -22,11 +22,12 @@ public abstract class QueuedDataFeeder implements IDataFeeder {
 
 	@Override
 	public Stream<BasicEvent> streamIncomingDataEvent() {
+		while(!isAvailableStream()) {
+		}
 		return incomingDataEvents.stream();
 	}
 
-	@Override
-	public boolean isAvailableStream() {
+	private boolean isAvailableStream() {
 		return !incomingDataEvents.isEmpty();
 	}
 	

@@ -45,8 +45,6 @@ public class WayPointsAggregatorTest {
 		File file = new File(classLoader.getResource("waypoints.json").getFile());
 		wayPointsAggregator = new WayPointsAggregator(new FileDataFeeder(file));
 		wayPointsAggregator.start();
-		while(!wayPointsAggregator.isAvailableStream()) {
-		}
 	}
 
 	@Test
