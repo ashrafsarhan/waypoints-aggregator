@@ -17,6 +17,11 @@ public class BasicEvent {
 	
 	private boolean isEnd;
 	
+	/**
+	 * Instantiates a new basic event.
+	 *
+	 * @param isEnd the is end
+	 */
 	public BasicEvent(boolean isEnd) {
 		super();
 		this.isEnd = isEnd;

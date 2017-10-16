@@ -15,6 +15,9 @@ public class WayPoint extends BasicEvent {
 	private double speed;
 	private double speed_limit;
 	
+	/**
+	 * Instantiates a new way point.
+	 */
 	public WayPoint() {
 		super(false);
 	}

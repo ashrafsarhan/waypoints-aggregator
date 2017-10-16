@@ -14,6 +14,12 @@ public class Position {
 	private double latitude;
 	private double longitude;
 	
+	/**
+	 * Instantiates a new position.
+	 *
+	 * @param latitude the latitude
+	 * @param longitude the longitude
+	 */
 	public Position(double latitude, double longitude) {
 		super();
 		this.latitude = latitude;

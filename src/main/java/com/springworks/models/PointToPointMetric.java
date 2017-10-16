@@ -21,6 +21,17 @@ public class PointToPointMetric extends BasicEvent {
 	private long accumlatedDurationInSec;
 	private double accumlatedDistanceInKm;
 
+	/**
+	 * Instantiates a new point to point metric.
+	 *
+	 * @param id the id
+	 * @param deltaDurationInSec the delta duration in sec
+	 * @param deltaDistanceInKm the delta distance in km
+	 * @param actualSpeed the actual speed
+	 * @param speedLimit the speed limit
+	 * @param accumlatedDurationInSec the accumlated duration in sec
+	 * @param accumlatedDistanceInKm the accumlated distance in km
+	 */
 	public PointToPointMetric(int id, long deltaDurationInSec, double deltaDistanceInKm, double actualSpeed,
 			double speedLimit, long accumlatedDurationInSec, double accumlatedDistanceInKm) {
 		super(false);
