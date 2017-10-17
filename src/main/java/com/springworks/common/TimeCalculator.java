@@ -7,6 +7,8 @@ package com.springworks.common;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 
+import org.apache.log4j.Logger;
+
 /**
  * The Class TimeCalculator.
  *
@@ -14,6 +16,7 @@ import java.text.SimpleDateFormat;
  */
 public class TimeCalculator {
 
+	private final static Logger logger = Logger.getLogger(TimeCalculator.class);
 	private static final String DATE_FORMAT_PATTERN = "yyyy-MM-dd'T'HH:mm:ss.SSS'Z'";
 	private static final SimpleDateFormat SIMPLE_DATE_FORMAT = new SimpleDateFormat(DATE_FORMAT_PATTERN);
 
@@ -29,7 +32,7 @@ public class TimeCalculator {
 		try {
 			deltaEpochMillis = getEpochMillis(currentTimestamp) - getEpochMillis(priorTimestamp);
 		} catch (ParseException e) {
-			System.out.println("Invalid given DateTime format");
+			logger.error("Invalid given DateTime format");
 			return 0;
 		}
 		return deltaEpochMillis;

@@ -6,12 +6,16 @@ package com.springworks.bootstrap;
 
 import java.io.File;
 
+import org.apache.log4j.Logger;
+
 /**
  * The Class WayPointsAggregatorApp.
  *
  * @author Ashraf Sarhan <ashraf.sarhan@gmail.com>
  */
 public class WayPointsAggregatorApp {
+	
+	private final static Logger logger = Logger.getLogger(WayPointsAggregatorApp.class);
 
 	/**
 	 * The main method.
@@ -24,7 +28,7 @@ public class WayPointsAggregatorApp {
 		if (file.exists())
 			new AppInitializer(file);
 		else
-			System.out.println("Could not find the give file: " + inputfilePath);
+			logger.error("File not found in " + inputfilePath);
 	}
 
 }

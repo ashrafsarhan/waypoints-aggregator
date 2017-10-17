@@ -8,6 +8,9 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.util.stream.Stream;
 
+import org.apache.log4j.Logger;
+
+import com.springworks.bootstrap.WayPointsAggregatorApp;
 import com.springworks.models.BasicEvent;
 
 /**
@@ -17,6 +20,7 @@ import com.springworks.models.BasicEvent;
  */
 public class CsvFileWriter {
 
+	private final static Logger logger = Logger.getLogger(CsvFileWriter.class);
 	private static final String NEW_LINE_SEPARATOR = "\n";
 
 	/**
@@ -46,18 +50,17 @@ public class CsvFileWriter {
 				}
 			});
 
-			System.out.println("CSV file was created successfully !!!");
+			logger.debug("CSV file was created successfully!");
 
 		} catch (Exception e) {
-			System.out.println("Error in CsvFileWriter !!!");
-			e.printStackTrace();
+			logger.error("Error occured in CsvFileWriter: ", e);
 		} finally {
 
 			try {
 				fileWriter.flush();
 				fileWriter.close();
 			} catch (IOException e) {
-				System.out.println("Error while flushing/closing fileWriter !!!");
+				logger.error("Error occured while flushing/closing fileWriter: ", e);
 				e.printStackTrace();
 			}
 
