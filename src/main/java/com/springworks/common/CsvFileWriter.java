@@ -10,7 +10,6 @@ import java.util.stream.Stream;
 
 import org.apache.log4j.Logger;
 
-import com.springworks.bootstrap.WayPointsAggregatorApp;
 import com.springworks.models.BasicEvent;
 
 /**
