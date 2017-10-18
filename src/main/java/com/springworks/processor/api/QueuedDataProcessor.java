@@ -4,11 +4,15 @@
  **********************************************************************/
 package com.springworks.processor.api;
 
-import java.util.concurrent.ConcurrentLinkedQueue;
+import java.util.concurrent.BlockingQueue;
+import java.util.concurrent.LinkedBlockingQueue;
 import java.util.stream.Stream;
+
+import org.apache.log4j.Logger;
 
 import com.springworks.models.BasicEvent;
 import com.springworks.stream.api.IDataFeeder;
+import com.springworks.stream.api.QueuedDataFeeder;
 
 /**
  * The Class QueuedDataProcessor.
@@ -17,7 +21,8 @@ import com.springworks.stream.api.IDataFeeder;
  */
 public abstract class QueuedDataProcessor implements IDataProcessor {
 
-	private ConcurrentLinkedQueue<BasicEvent> outgoingDataEvents = new ConcurrentLinkedQueue<BasicEvent>();
+	private final static Logger logger = Logger.getLogger(QueuedDataFeeder.class);
+	private BlockingQueue<BasicEvent> outgoingDataEvents = new LinkedBlockingQueue<BasicEvent>();
 	private IDataFeeder dataFeeder;
 
 	@Override
@@ -33,20 +38,11 @@ public abstract class QueuedDataProcessor implements IDataProcessor {
 				if (!e.isEnd()) {
 					process(e).ifPresent(this::addOutgoingDataEvent);
 				} else {
-					addOutgoingDataEvent(new BasicEvent(true));
+					addOutgoingDataEvent(e);
 					return;
 				}
 			});
 		}).start();
-	}
-	
-	/**
-	 * Checks if is available stream.
-	 *
-	 * @return true, if is available stream
-	 */
-	private boolean isAvailableStream() {
-		return !outgoingDataEvents.isEmpty();
 	}
 
 	/**
@@ -61,9 +57,14 @@ public abstract class QueuedDataProcessor implements IDataProcessor {
 
 	@Override
 	public Stream<BasicEvent> streamOutgoingDataEvents() {
-		while(!isAvailableStream()) {
-		}
-		return outgoingDataEvents.stream();
+		return Stream.generate(() -> {
+	        try {
+	            return outgoingDataEvents.take();
+	        } catch (InterruptedException ie) {
+	        	logger.debug("QueuedDataProcessor thread is interrupted", ie);
+	            return new BasicEvent(true);
+	        }
+	    }); 
 	}
 
 }

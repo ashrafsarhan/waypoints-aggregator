@@ -49,8 +49,7 @@ public class WayPointsAggregatorTest {
 
 	@Test
 	public void testTheResultedPointToPointMetrics() {
-		wayPointsAggregator.streamOutgoingDataEvents().filter(e -> !e.isEnd()).forEach(e -> {
-			System.out.println(e);
+		wayPointsAggregator.streamOutgoingDataEvents().limit(4).forEach(e -> {
 			//Assert on the resulted PointToPointMetric from the WayPointsAggregator processor
 			assertEquals("Test Fails (Not the expected pointToPointMetric " + counter.get() + ")", pointToPointMetrics.get(counter.getAndIncrement()), e);	
 		});
