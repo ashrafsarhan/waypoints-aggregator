@@ -4,8 +4,11 @@
  **********************************************************************/
 package com.springworks.stream.api;
 
-import java.util.concurrent.ConcurrentLinkedQueue;
+import java.util.concurrent.BlockingQueue;
+import java.util.concurrent.LinkedBlockingQueue;
 import java.util.stream.Stream;
+
+import org.apache.log4j.Logger;
 
 import com.springworks.models.BasicEvent;
 
@@ -16,7 +19,8 @@ import com.springworks.models.BasicEvent;
  */
 public abstract class QueuedDataFeeder implements IDataFeeder {
 
-	private ConcurrentLinkedQueue<BasicEvent> incomingDataEvents = new ConcurrentLinkedQueue<BasicEvent>();
+	private final static Logger logger = Logger.getLogger(QueuedDataFeeder.class);
+	private BlockingQueue<BasicEvent> incomingDataEvents = new LinkedBlockingQueue<BasicEvent>();
 
 	/**
 	 * Adds the incoming data event.
@@ -30,18 +34,14 @@ public abstract class QueuedDataFeeder implements IDataFeeder {
 
 	@Override
 	public Stream<BasicEvent> streamIncomingDataEvent() {
-		while(!isAvailableStream()) {
-		}
-		return incomingDataEvents.stream();
-	}
-
-	/**
-	 * Checks if is available stream.
-	 *
-	 * @return true, if is available stream
-	 */
-	private boolean isAvailableStream() {
-		return !incomingDataEvents.isEmpty();
+		return Stream.generate(() -> {
+	        try {
+	            return incomingDataEvents.take();
+	        } catch (InterruptedException ie) {
+	        	logger.debug("QueuedDataFeeder thread is interrupted", ie);
+	            return new BasicEvent(true);
+	        }
+	    }); 
 	}
 	
 	@Override
