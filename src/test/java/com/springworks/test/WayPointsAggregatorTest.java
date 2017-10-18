@@ -1,7 +1,7 @@
 /**
  * 
  */
-package com.springworks.stream.test;
+package com.springworks.test;
 
 import static org.junit.Assert.assertEquals;
 
