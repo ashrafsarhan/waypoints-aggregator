@@ -6,7 +6,6 @@ package com.springworks.stream.api;
 
 import java.util.concurrent.BlockingQueue;
 import java.util.concurrent.LinkedBlockingQueue;
-import java.util.stream.Stream;
 
 import org.apache.log4j.Logger;
 
@@ -33,15 +32,13 @@ public abstract class QueuedDataFeeder implements IDataFeeder {
 	}
 
 	@Override
-	public Stream<BasicEvent> streamIncomingDataEvent() {
-		return Stream.generate(() -> {
-	        try {
-	            return incomingDataEvents.take();
-	        } catch (InterruptedException ie) {
-	        	logger.debug("QueuedDataFeeder thread is interrupted", ie);
-	            return new BasicEvent(true);
-	        }
-	    }); 
+	public BasicEvent getIncomingDataEvent() {
+		try {
+            return incomingDataEvents.take();
+        } catch (InterruptedException ie) {
+        	logger.debug("QueuedDataFeeder thread is interrupted", ie);
+            return new BasicEvent(true);
+        }
 	}
 	
 	@Override

@@ -5,7 +5,6 @@
 package com.springworks.processor.api;
 
 import java.util.Optional;
-import java.util.stream.Stream;
 
 import com.springworks.models.BasicEvent;
 import com.springworks.stream.api.IDataFeeder;
@@ -42,6 +41,6 @@ public interface IDataProcessor {
 	 *
 	 * @return the stream
 	 */
-	public Stream<BasicEvent> streamOutgoingDataEvents();
+	public BasicEvent getOutgoingDataEvent();
 
 }

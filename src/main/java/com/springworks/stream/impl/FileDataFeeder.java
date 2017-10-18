@@ -11,9 +11,12 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.UnsupportedEncodingException;
 
+import org.apache.log4j.Logger;
+
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.stream.JsonReader;
+import com.springworks.bootstrap.AppInitializer;
 import com.springworks.models.BasicEvent;
 import com.springworks.models.WayPoint;
 import com.springworks.stream.api.QueuedDataFeeder;
@@ -25,6 +28,7 @@ import com.springworks.stream.api.QueuedDataFeeder;
  */
 public class FileDataFeeder extends QueuedDataFeeder {
 	
+	private final static Logger logger = Logger.getLogger(FileDataFeeder.class);
 	private File file;
 
 	/**
@@ -50,11 +54,12 @@ public class FileDataFeeder extends QueuedDataFeeder {
 		    return;
 		}
 		catch (UnsupportedEncodingException e) {
+			logger.error("Fatal error: UnsupportedEncodingException", e);
 		    e.printStackTrace();
 		} catch (FileNotFoundException e) {
-		    e.printStackTrace();
+			logger.error("Fatal error: FileNotFoundException", e);
 		} catch (IOException e) {
-		    e.printStackTrace();
+			logger.error("Fatal error: IOException was occurred", e);
 		}
 	}
 

@@ -4,8 +4,6 @@
  **********************************************************************/
 package com.springworks.stream.api;
 
-import java.util.stream.Stream;
-
 import com.springworks.models.BasicEvent;
 
 /**
@@ -30,6 +28,6 @@ public interface IDataFeeder {
 	 *
 	 * @return the stream
 	 */
-	public Stream<BasicEvent> streamIncomingDataEvent();
+	public BasicEvent getIncomingDataEvent();
 
 }

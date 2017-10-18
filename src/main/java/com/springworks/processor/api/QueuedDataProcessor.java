@@ -34,14 +34,15 @@ public abstract class QueuedDataProcessor implements IDataProcessor {
 	public void start() {
 		new Thread(() -> {
 			dataFeeder.start();
-			dataFeeder.streamIncomingDataEvent().forEach(e -> {
+			while (true) {
+				BasicEvent e = dataFeeder.getIncomingDataEvent();
 				if (!e.isEnd()) {
 					process(e).ifPresent(this::addOutgoingDataEvent);
 				} else {
 					addOutgoingDataEvent(e);
 					return;
 				}
-			});
+			}
 		}).start();
 	}
 
@@ -56,15 +57,13 @@ public abstract class QueuedDataProcessor implements IDataProcessor {
 	}
 
 	@Override
-	public Stream<BasicEvent> streamOutgoingDataEvents() {
-		return Stream.generate(() -> {
-	        try {
-	            return outgoingDataEvents.take();
-	        } catch (InterruptedException ie) {
-	        	logger.debug("QueuedDataProcessor thread is interrupted", ie);
-	            return new BasicEvent(true);
-	        }
-	    }); 
+	public BasicEvent getOutgoingDataEvent() {
+		try {
+			return outgoingDataEvents.take();
+		} catch (InterruptedException ie) {
+			logger.debug("QueuedDataProcessor thread is interrupted", ie);
+			return new BasicEvent(true);
+		}
 	}
 
 }
