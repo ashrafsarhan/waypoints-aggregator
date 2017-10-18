@@ -16,7 +16,6 @@ import org.apache.log4j.Logger;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.stream.JsonReader;
-import com.springworks.bootstrap.AppInitializer;
 import com.springworks.models.BasicEvent;
 import com.springworks.models.WayPoint;
 import com.springworks.stream.api.QueuedDataFeeder;
