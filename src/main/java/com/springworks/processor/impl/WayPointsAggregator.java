@@ -60,6 +60,7 @@ public class WayPointsAggregator extends QueuedDataProcessor {
 	 * @return the point to point metric
 	 */
 	private PointToPointMetric getPointToPointMetric(WayPoint currentWayPoint) {
+		//TODO RENAMING 
 		long deltaDurationInSec = TimeCalculator.getDeltaEpochMillis(priorWayPoint.getTimestamp(),
 				currentWayPoint.getTimestamp());
 		double deltaDistanceInKm = GeoDistanceCalculator.getDistanceInKm(priorWayPoint.getPosition(),

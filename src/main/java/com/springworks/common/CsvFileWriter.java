@@ -27,6 +27,8 @@ public class CsvFileWriter {
 		this.fileWriter = new FileWriter(fileName);
 		// Write the CSV file header
 		fileWriter.append(csvHeader);
+		// Add a new line separator after the header
+	    fileWriter.append(NEW_LINE_SEPARATOR);
 	}
 
 	
@@ -37,9 +39,6 @@ public class CsvFileWriter {
 	 */
 	public void writeCsvFile(BasicEvent event) {
 		try {
-			// Add a new line separator after the header
-			fileWriter.append(NEW_LINE_SEPARATOR);
-
 			// Write events to the CSV file
 			fileWriter.append(event.toString());
 			fileWriter.append(NEW_LINE_SEPARATOR);
